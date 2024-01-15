@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let word = "JavaScript";
+      word[0] = "Y"; //должно выдать ошибку
+      console.log(word);
+
+      let userOne = {
+        name: "Pavel",
+        role: "student",
+        country: "Russia",
+      };
+
+      let userTwo = {
+        name: "Pavel",
+        role: "student",
+        country: "Russia",
+      };
+
+      console.log(userOne == userTwo);
+
+      let fullName = "Pavel Nikitin";
+      console.log(fullName.charCodeAt(fullName.length - 1)); //
+
+      let string = "My name is Slim Shady";
+
+      console.log(string.startsWith("My ")); // true
+      console.log(string.startsWith("S")); // false
+
+      let patternTwo = /love/gi;
+      let stringTwo =
+        "I love JavaScript. If you do not love JavaScript what else can you love.";
+
+      console.log(stringTwo.match(patternTwo));
+    </script>
+  </body>
+</html>
