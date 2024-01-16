@@ -1,4 +1,4 @@
-### Data Types
+# Data Types
 
 1. Примитивные
 2. Непримитивные (Object References)
@@ -18,7 +18,7 @@ word[0] = "Y";
 console.log(word); // JavaScript (модификация не прошла)
 ```
 
-#### Non-Primitive Data Types
+## Non-Primitive Data Types
 
 Non-primitive data types are modifiable or mutable. We can modify the value of non-primitive data types after it gets created.
 
@@ -60,7 +60,7 @@ Rule of thumb, we do not compare non-primitive data types. Do not compare arrays
 
 (Не сравнивать непримитивные типы данных (массивы, функции или объекты) Непримитивные типы данных являются ссылочными типами, поскольку они сравниваются по ссылке, а не по значению. Два объекта строго равны, только если они ссылаются на один и тот же базовый объект.)
 
-#### Math Object
+## Math Object
 
 In JavaScript the Math Object provides a lots of methods to work with numbers.
 
@@ -124,7 +124,7 @@ Math.cos(0);
 Math.cos(60);
 ```
 
-#### Long Literal Strings
+## Long Literal Strings
 
 A string could be a single character or paragraph or a page. If the string length is too big it does not fit in one line. We can use the backslash character "/\" at the end of each line to indicate that the string will continue on the next line.
 
@@ -136,7 +136,7 @@ const paragraph =
                   World!";
 ```
 
-#### Escape Characters
+## Escape Characters
 
 The most common escape characters:
 
@@ -146,7 +146,7 @@ The most common escape characters:
 \': Single quote (')
 \": Double quote (")
 
-#### Template Literals (Template Strings) (Шаблонные строки)
+## Template Literals (Template Strings) (Шаблонные строки)
 
 To create a template strings, we use two back-ticks. We can inject data as expressions inside a template string. To inject data, we enclose the expression with a curly bracket({}) preceded by a $ sign.
 
@@ -169,7 +169,7 @@ let b = 3;
 console.log(`${a} is greater than ${b}: ${a > b}`);
 ```
 
-#### String Methods
+## String Methods
 
 - substr(): It takes two arguments, the starting index and number of characters to slice.
 
@@ -289,7 +289,7 @@ let string = "love";
 console.log(string.repeat(10)); // lovelovelovelovelovelovelovelovelovelove
 ```
 
-#### Changing Data Type (Casting)
+## Changing Data Type (Casting)
 
 - Casting: Converting one data type to another data type. We use parseInt(), parseFloat(), Number(), + sign, str() When we do arithmetic operations string numbers should be first converted to integer or float if not it returns an error.
 
