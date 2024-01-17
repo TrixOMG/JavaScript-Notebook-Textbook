@@ -68,6 +68,7 @@ let wordsArray = clearSentence
 
 let mostFrequentWordCount = 0;
 let mostFrequentWord = "";
+
 for (let i = 0; i < wordsArray.length; i++) {
   let currentWordCount = 0;
   for (let j = 0; j < wordsArray.length; j++) {

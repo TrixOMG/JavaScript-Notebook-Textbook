@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(parseInt(9.8)); //9
+      console.log(4 == 4);
+      console.log(4 === 4);
+      console.log(4 == "4");
+      console.log(4 === "4"); // false
+      console.log("python".length !== "jargon".length); //false
+      console.log(!("dragon".includes("on") && "python".includes("on")));
+      console.log("Date:");
+      let now = new Date();
+      let newNow = Date.now();
+      console.log(now.getFullYear());
+      console.log(now.getMonth() + 1);
+      console.log(now.getDate());
+      console.log(now.getDay());
+      console.log(Math.round(newNow / 100));
+
+      let base = prompt("Enter base:");
+      let height = prompt("Enter height:");
+      console.log((base * height) / 2);
+
+      // Date:
+      // let nowForDate = new Date();
+      let correctMinutes =
+        now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      let correctHours = now.getHours() ? now.getHours() : "0" + now.getHours();
+      console.log(
+        now.getFullYear() +
+          "-" +
+          (now.getMonth() + 1) +
+          "-" +
+          now.getDate() +
+          " " +
+          correctHours +
+          ":" +
+          correctMinutes
+      );
+    </script>
+  </body>
+</html>
