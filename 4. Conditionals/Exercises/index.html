@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="answer"></p>
+    <script>
+      // let numberOfDays = new Date(2024, 2, 0).getDate();
+      //Program, which tells the number of days in a month
+      // considering leap year (високосный год)
+      let year = prompt("Enter YEAR:", "Example: 2013");
+      let month;
+      let isMonthCorrect = false;
+
+      while (isMonthCorrect === false) {
+        month = prompt(
+          "Enter correct MONTH starting with CAPITAL LETTER",
+          "Example: January"
+        );
+
+        if (
+          month === "January" ||
+          month === "February" ||
+          month === "March" ||
+          month === "April" ||
+          month === "May" ||
+          month === "June" ||
+          month === "July" ||
+          month === "August" ||
+          month === "September" ||
+          month === "October" ||
+          month === "November" ||
+          month === "December"
+        ) {
+          isMonthCorrect = true;
+        }
+      }
+      let monthId = null;
+
+      switch (month) {
+        case month === "January":
+          monthId = 0;
+          break;
+        case month === "February":
+          monthId = 1;
+          break;
+        case month === "March":
+          monthId = 2;
+          break;
+        case month === "April":
+          monthId = 3;
+          break;
+        case month === "May":
+          monthId = 4;
+          break;
+        case month === "June":
+          monthId = 5;
+          break;
+        case month === "July":
+          monthId = 6;
+          break;
+        case month === "August":
+          monthId = 7;
+          break;
+        case month === "September":
+          monthId = 8;
+          break;
+        case month === "October":
+          monthId = 9;
+          break;
+        case month === "November":
+          monthId = 10;
+          break;
+        case month === "December":
+          monthId = 11;
+          break;
+        default:
+          console.log("Wrong month");
+      }
+
+      let answer = document.getElementById("answer");
+      let numberOfDays = new Date(year, monthId, 0).getDate();
+
+      numberOfDays % 2 === 0 ? (dayWord = "days") : (dayWord = "day");
+
+      answer.innerText = `${month} has ${numberOfDays} ${dayWord}`;
+    </script>
+  </body>
+</html>
