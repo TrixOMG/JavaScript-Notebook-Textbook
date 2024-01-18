@@ -205,6 +205,8 @@ console.log("Pavel Nikitin".includes("ki")); // "true"
 
 - replace(): takes as a parameter the old substring and a new substring.
 
+(Может принимать RegEx)
+
 ```js
 console.log("Pavel Nikitin".replace("Pavel", "John")); // "John Nikitin"
 ```
@@ -271,7 +273,8 @@ console.log(string.match(patternTwo)); // ["love", "love", "love"]
 Extracting numbers from text using regular expression:
 
 ```js
-let txt = "В 2020 я поступил в университет. В 2024 году я закончу МАДИ.";
+let txt =
+  "В 2020 я поступил в университет. В 2024 году я закончу МАДИ.";
 let regEx = /\d+/;
 
 // d with escape character means d not a normal d instead acts a digit

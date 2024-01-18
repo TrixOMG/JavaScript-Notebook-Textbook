@@ -32,7 +32,9 @@ switch (caseValue) {
 ## Ternary Operators (Тернарные операторы)
 
 ```js
-condition ? "code, if condition is true" : "code, if condition is false";
+condition
+  ? "code, if condition is true"
+  : "code, if condition is false";
 
 let isRaining = true;
 isRaining
