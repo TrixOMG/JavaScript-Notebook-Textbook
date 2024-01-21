@@ -48,6 +48,21 @@ for (const num of numbers) {
 // 1 2 3 4 5
 ```
 
+## for in
+
+Используется для перебора значений ключей в объектах
+
+```js
+const someObject = {
+  key1: "value",
+  key2: "value",
+  key3: 4,
+};
+for (keys in someObject) {
+  // code
+}
+```
+
 ## break
 
 Используется для прерывания цикла
