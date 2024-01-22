@@ -240,3 +240,17 @@ console.log(numbers); // [5, 4, 3, 2, 1]
 numbers.reverse();
 console.log(numbers); // [1, 2, 3, 4, 5]
 ```
+
+### every
+
+Определяет, соответствуют ли все члены массива заданному условию.
+
+```js
+// включает ли в себя массив все члены другого массива
+function isArrayIncludesMultipleValues(array, values) {
+  return values.every((value) => array.includes(value));
+}
+
+const arr = [1, 2, 3, 4, 5];
+console.log(arr.every((member) => member > 5)); // false
+```

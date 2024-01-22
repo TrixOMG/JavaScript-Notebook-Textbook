@@ -177,3 +177,73 @@ const findUserWithMostSkills = (usersObject) => {
 console.log(
   findUserWithMostSkills(users).userWithMostSkills
 );
+
+// Count logged in users
+
+const countLoggedInUsers = (usersObject) => {
+  let count = 0;
+  for (userName in usersObject) {
+    if (usersObject[userName].isLoggedIn === true) {
+      count++;
+    }
+  }
+  return count;
+};
+
+console.log(countLoggedInUsers(users));
+
+// Count users having greater than or equal to 50 points from the following object.
+
+const countUsersWithManyPoints = (usersObject) => {
+  let count = 0;
+  const pointThreshold = 50;
+
+  for (userName in usersObject) {
+    if (usersObject[userName].points >= pointThreshold) {
+      count++;
+    }
+  }
+  return count;
+};
+
+console.log(countLoggedInUsers(users));
+
+// Find people who are MERN stack developer from the users object
+function isArrayIncludesMultipleValues(array, values) {
+  return values.every((value) => array.includes(value));
+}
+
+const countMERNDevs = (usersObject) => {
+  let count = 0;
+  let valuesSearchingFor = [
+    "MongoDB",
+    "Express",
+    "React",
+    "Node",
+  ];
+
+  for (userName in usersObject) {
+    if (
+      isArrayIncludesMultipleValues(
+        usersObject[userName].skills,
+        valuesSearchingFor
+      )
+    ) {
+      count++;
+    }
+  }
+  return count;
+};
+
+console.log(countMERNDevs(users));
+
+//Seting my name in the users object without modifying the original users object
+const usersWithMe = Object.assign({}, users);
+
+delete Object.assign(usersWithMe, {
+  Pavel: usersWithMe.Alex,
+})["Alex"];
+
+console.log(usersWithMe);
+
+// console.log(Object.keys(users));
