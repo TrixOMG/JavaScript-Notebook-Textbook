@@ -110,7 +110,107 @@ console.log(counts);
 */
 ```
 
+### Union of Sets
 
+To find a union to two sets can be achieved using spread operator.
+Union of set A and set B (A U B).
 
+```js
+let a = [1, 2, 3, 4, 5];
+let b = [3, 4, 5, 6];
+let c = [...a, ...b];
 
+// let A = new Set(a);
+// let B = new Set(b);
+let C = new Set(c);
 
+console.log(C);
+```
+
+### Intersection of Sets
+
+To find an intersection of two sets can be achieved using filter.
+Intersection of set A and set B (A ∩ B)
+
+```js
+let a = [1, 2, 3, 4, 5];
+let b = [3, 4, 5, 6];
+
+// let A = new Set(a);
+let B = new Set(b);
+
+let c = a.filter((num) => B.has(num));
+let C = new Set(c);
+
+console.log(C);
+```
+
+### Difference of Sets
+
+To find an the difference between two sets can be achieved using filter.
+Difference of set A and set B (A \ B)
+
+```js
+let a = [1, 2, 3, 4, 5];
+let b = [3, 4, 5, 6];
+
+// let A = new Set(a);
+let B = new Set(b);
+
+let c = a.filter((num) => !B.has(num));
+let C = new Set(c);
+
+console.log(C);
+```
+
+## Map
+
+```js
+const map = new Map();
+console.log(map); // Map(0) {}
+
+countries = [
+  ["Finland", "Helsinki"],
+  ["Sweden", "Stockholm"],
+  ["Norway", "Oslo"],
+];
+const map = new Map(countries);
+console.log(map);
+console.log(map.size);
+/*
+Map(3) {"Finland" => "Helsinki", "Sweden" => "Stockholm", "Norway" => "Oslo"}
+3
+*/
+```
+
+### Adding values to the Map
+
+```js
+const countriesMap = new Map();
+console.log(countriesMap.size); // 0
+countriesMap.set("Finland", "Helsinki");
+countriesMap.set("Sweden", "Stockholm");
+countriesMap.set("Norway", "Oslo");
+console.log(countriesMap);
+console.log(countriesMap.size); // 3
+```
+
+### Getting value from Map
+
+```js
+console.log(countriesMap.get("Finland")); // Helsinki
+```
+
+### Checking key in Map
+
+```js
+console.log(countriesMap.has("Finland")); // true
+```
+
+### Getting values in a loop
+
+```js
+for (const [country, city] of countriesMap) {
+  console.log(country, city);
+}
+```
