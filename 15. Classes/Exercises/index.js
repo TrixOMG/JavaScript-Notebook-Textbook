@@ -56,3 +56,99 @@ dog1.saySomething();
 console.log(dog1.getInfo());
 
 //Lv.3
+class Statistics {
+  constructor(arrayOfValues) {
+    this.arrayOfValues = arrayOfValues;
+  }
+
+  get getCount() {
+    return this.arrayOfValues.length;
+  }
+
+  get getSum() {
+    return this.arrayOfValues.reduce((a, b) => a + b, 0);
+  }
+
+  get getMin() {
+    return Math.min(...this.arrayOfValues);
+  }
+
+  get getMax() {
+    return Math.max(...this.arrayOfValues);
+  }
+
+  get getRange() {
+    return this.getMax - this.getMin;
+  }
+
+  get getMean() {
+    return this.getSum / this.getCount;
+  }
+
+  get getMedian() {
+    return this.arrayOfValues.sort((a, b) => a - b)[
+      Math.floor(this.getCount / 2)
+    ];
+  }
+
+  get getMode() {
+    const setOfValues = new Set(this.arrayOfValues);
+    let mode = 0;
+    let maxCount = 0;
+    for (const val of setOfValues) {
+      const count = this.arrayOfValues.filter(
+        (value) => value === val
+      ).length;
+      if (count > maxCount) {
+        maxCount = count;
+        mode = val;
+      }
+    }
+    return mode;
+  }
+
+  get getVariance() {
+    const mean = this.getMean;
+    const squareDiffs = this.arrayOfValues.map((value) => {
+      const diff = value - mean;
+      return diff * diff;
+    });
+    const avgSquareDiff =
+      squareDiffs.reduce((a, b) => a + b, 0) /
+      this.getCount;
+    return avgSquareDiff;
+  }
+
+  get standardDeviation() {
+    return Math.sqrt(this.getVariance);
+  }
+
+  get getFreqDist() {
+    const freqDist = {};
+    for (const val of this.arrayOfValues) {
+      if (freqDist[val]) {
+        freqDist[val] += 1;
+      } else {
+        freqDist[val] = 1;
+      }
+    }
+    return freqDist;
+  }
+}
+
+ages = [
+  31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33,
+  27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26,
+];
+
+const stats = new Statistics(ages);
+console.log("Count:", stats.getCount);
+console.log("Max:", stats.getMax);
+console.log("Mean:", stats.getMean);
+console.log("Median:", stats.getMedian);
+console.log("Min:", stats.getMin);
+console.log("Mode:", stats.getMode);
+console.log("Range:", stats.getRange);
+console.log("Sum:", stats.getSum);
+console.log("Variance:", stats.getVariance);
+console.log("Frequency Distribution:", stats.getFreqDist);
