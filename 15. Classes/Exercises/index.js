@@ -119,7 +119,7 @@ class Statistics {
     return avgSquareDiff;
   }
 
-  get standardDeviation() {
+  get getStandardDeviation() {
     return Math.sqrt(this.getVariance);
   }
 
@@ -151,4 +151,8 @@ console.log("Mode:", stats.getMode);
 console.log("Range:", stats.getRange);
 console.log("Sum:", stats.getSum);
 console.log("Variance:", stats.getVariance);
+console.log(
+  "Standard Deviation:",
+  stats.getStandardDeviation
+);
 console.log("Frequency Distribution:", stats.getFreqDist);
