@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document Object Model</title>
+  </head>
+  <body>
+    <h1 class="title" id="first-title">First Title</h1>
+    <h2 class="title" id="second-title">Second Title</h2>
+    <h2 class="title" id="third-title">Third Title</h2>
+    <h2 class="title" id="forth-title">Forth Title</h2>
+  </body>
+  <script>
+    const allTitles = document.getElementsByTagName("h2");
+
+    console.log(allTitles); //HTMLCollection(3)
+    console.log(allTitles.length); // 3
+
+    for (let i = 0; i < allTitles.length; i++) {
+      console.log(allTitles[i]); // prints each element in the HTMLCollection
+    }
+  </script>
+</html>
