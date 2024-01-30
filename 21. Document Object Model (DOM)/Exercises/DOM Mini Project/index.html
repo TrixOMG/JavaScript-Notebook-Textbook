@@ -10,8 +10,9 @@
   </head>
   <body>
     <div class="wrapper">
-      <h1>Coding challenges in 2020</h1>
+      <h1>Coding challenges in 2024</h1>
       <h2>30DaysOfJavaScript Challenge</h2>
+      <p id="dateTime">Current Date and Time</p>
       <ul>
         <li>30DaysOfPython Challenge</li>
         <li>30DaysOfJavaScript Challenge</li>
@@ -23,5 +24,95 @@
       </ul>
     </div>
   </body>
-  <script></script>
+  <script>
+    function getRandomColor() {
+      const characters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += characters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function getCurentDateAndTime() {
+      const fullDate = new Date();
+      const month = fullDate.toLocaleString("en", {
+        month: "long",
+      });
+      const date = fullDate.getDate();
+      const year = fullDate.getFullYear();
+      const hour =
+        fullDate.getHours() > 9
+          ? fullDate.getHours()
+          : "0" + fullDate.getHours();
+      const minute =
+        fullDate.getMinutes() > 9
+          ? fullDate.getMinutes()
+          : "0" + fullDate.getMinutes();
+      const second =
+        fullDate.getSeconds() > 9
+          ? fullDate.getSeconds()
+          : "0" + fullDate.getSeconds();
+      return `${month} ${date}, ${year} ${hour}:${minute}:${second}`;
+    }
+
+    const dateTime = document.getElementById("dateTime");
+    dateTime.style.marginLeft = "1em";
+    dateTime.style.marginRight = "1em";
+    dateTime.style.padding = "0.5em";
+    dateTime.style.textAlign = "center";
+    dateTime.style.width = "fit-content";
+
+    const wrapper =
+      document.getElementsByClassName("wrapper")[0];
+    wrapper.style.display = "flex";
+    wrapper.style.flexDirection = "column";
+    wrapper.style.justifyContent = "center";
+    wrapper.style.alignItems = "center";
+    wrapper.style.padding = "5em";
+
+    const headerOne =
+      document.getElementsByTagName("h1")[0];
+    headerOne.style.textAlign = "center";
+
+    headerOne.innerHTML =
+      "Coding challenges in <span>2024</span>";
+
+    const year = document.getElementsByTagName("span")[0];
+    year.style.fontSize = "50px";
+
+    const headerTwo =
+      document.getElementsByTagName("h2")[0];
+    headerTwo.style.textAlign = "center";
+    headerTwo.style.textDecoration = "underline";
+
+    const list = document.getElementsByTagName("ul")[0];
+    list.style.listStyle = "none";
+    list.style.display = "flex";
+    list.style.flexDirection = "column";
+    list.style.justifyContent = "center";
+    list.style.alignItems = "center";
+    list.style.gap = "0.2em";
+    list.style.margin = "0";
+    list.style.padding = "0";
+
+    const listItems = list.getElementsByTagName("li");
+    for (let i = 0; i < listItems.length; i++) {
+      if (i === 0) {
+        listItems[i].style.backgroundColor = "green";
+      } else if (i === 1) {
+        listItems[i].style.backgroundColor = "yellow";
+      } else {
+        listItems[i].style.backgroundColor = "red";
+      }
+      listItems[i].style.width = "100%";
+      listItems[i].style.padding = "1em";
+    }
+
+    setInterval(() => {
+      year.style.color = getRandomColor();
+      dateTime.style.backgroundColor = getRandomColor();
+      dateTime.innerText = getCurentDateAndTime();
+    }, 1000);
+  </script>
 </html>
