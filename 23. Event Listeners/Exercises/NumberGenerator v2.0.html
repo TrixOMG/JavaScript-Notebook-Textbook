@@ -21,6 +21,12 @@
     header.innerText = "Number Generator";
     document.body.appendChild(header);
 
+    const message = document.createElement("p");
+    message.style.color = "red";
+    message.style.display = "none";
+    message.innerHTML = "Error message";
+    document.body.appendChild(message);
+
     const inputWrapper = document.createElement("div");
     inputWrapper.style.display = "flex";
     inputWrapper.style.flexDirection = "row";
@@ -32,7 +38,7 @@
     document.body.appendChild(inputWrapper);
 
     const inputField = document.createElement("input");
-    inputField.type = "text";
+    inputField.type = "number";
     inputField.placeholder = "Number goes here";
     inputField.style.width = "30%";
     inputWrapper.appendChild(inputField);
@@ -55,6 +61,8 @@
       "1fr 1fr 1fr 1fr 1fr 1fr";
 
     function getNumbers(numOfNumbers) {
+      wrapper.innerHTML = "";
+
       for (let i = 0; i < numOfNumbers; i++) {
         const number = document.createElement("div");
         number.innerHTML = `<div>${i}</div>`;
@@ -74,20 +82,33 @@
         } else {
           number.style.backgroundColor = "#fddb3a";
         }
-
         wrapper.appendChild(number);
       }
     }
 
+    function isInt(value) {
+      return value % 1 === 0;
+    }
+
     generateButton.addEventListener("click", () => {
-      const readValue = inputField.value;
-      console.log(typeof readValue);
-      console.log(readValue);
-      // if () {
-      // }
-      // } else if()
+      const readValue = inputField.valueAsNumber;
+
+      if (inputField.value === "") {
+        message.innerHTML =
+          "Enter number value in the input field to generate numbers";
+        message.style.display = "block";
+        return;
+      } else if (isNaN(readValue) || !isInt(readValue)) {
+        message.innerHTML =
+          "Input value should be a whole number";
+        message.style.display = "block";
+        return;
+      }
+
+      message.style.display = "none";
+      getNumbers(parseInt(readValue));
     });
 
-    getNumbers(50);
+    getNumbers(42);
   </script>
 </html>
