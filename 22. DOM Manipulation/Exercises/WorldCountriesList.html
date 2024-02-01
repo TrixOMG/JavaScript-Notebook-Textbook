@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>World Countries List</title>
+  </head>
+  <body>
+    <h1 id="header1">World Countries List</h1>
+    <h2 id="numOfCountries">Total Number of Countries:</h2>
+    <p id="author">Author: Nikitin Pavel</p>
+    <div id="container"></div>
+  </body>
+  <script>
+    const countriesAPI = "https://restcountries.com/v2/all";
+
+    const fetchCountriesData = async () => {
+      try {
+        const response = await fetch(countriesAPI);
+        const countries = await response.json();
+        const namesArray = [];
+
+        countries.forEach((country) => {
+          namesArray.push(country.name);
+        });
+        showCountriesData(namesArray);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    function showCountriesData(countriesArray) {
+      //Get Container
+      const container =
+        document.getElementById("container");
+
+      //Style container
+      container.style.display = "grid";
+      container.style.gap = "1em";
+      container.style.marginLeft = "6em";
+      container.style.marginRight = "6em";
+      container.style.gridTemplateColumns =
+        "1fr 1fr 1fr 1fr 1fr 1fr";
+
+      //Set number of Countries
+      const numOfCountries = document.getElementById(
+        "numOfCountries"
+      );
+      numOfCountries.innerHTML = `Total Number of Countries: ${countriesArray.length}`;
+      numOfCountries.style.textAlign = "center";
+
+      countriesArray.forEach((country) => {
+        const countryElement =
+          document.createElement("div");
+
+        countryElement.style.width = "90%";
+        countryElement.style.height = "5em";
+        countryElement.style.border = "1px solid black";
+        countryElement.style.boxShadow =
+          "1px 0px 8px 1px rgba(0, 0, 0, 0.2)";
+        countryElement.style.display = "flex";
+        countryElement.style.justifyContent = "center";
+        countryElement.style.alignItems = "center";
+        countryElement.style.textAlign = "center";
+        countryElement.style.padding = "0.5em";
+
+        countryElement.innerHTML = `<div>${country}</div>`;
+        container.appendChild(countryElement);
+      });
+    }
+
+    const header1 = document.getElementById("header1");
+    header1.style.textAlign = "center";
+
+    const author = document.getElementById("author");
+    author.style.textAlign = "center";
+    fetchCountriesData();
+  </script>
+</html>
