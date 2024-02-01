@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Number Generator v2.0</title>
+  </head>
+  <body></body>
+  <script>
+    function isPrime(num) {
+      for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+
+    const header = document.createElement("h1");
+    header.innerText = "Number Generator";
+    document.body.appendChild(header);
+
+    const inputWrapper = document.createElement("div");
+    inputWrapper.style.display = "flex";
+    inputWrapper.style.flexDirection = "row";
+    inputWrapper.style.gap = "0.5em";
+    inputWrapper.style.alignItems = "center";
+    inputWrapper.style.justifyContent = "center";
+    inputWrapper.style.width = "100%";
+    inputWrapper.style.margin = "1em";
+    document.body.appendChild(inputWrapper);
+
+    const inputField = document.createElement("input");
+    inputField.type = "text";
+    inputField.placeholder = "Number goes here";
+    inputField.style.width = "30%";
+    inputWrapper.appendChild(inputField);
+
+    const generateButton = document.createElement("button");
+    generateButton.innerText = "Generate";
+    inputWrapper.appendChild(generateButton);
+
+    const wrapper = document.createElement("div");
+    document.body.appendChild(wrapper);
+
+    document.body.style.display = "flex";
+    document.body.style.flexDirection = "column";
+    document.body.style.alignItems = "center";
+    document.body.style.justifyContent = "center";
+
+    wrapper.style.display = "grid";
+    wrapper.style.gap = "0.2em";
+    wrapper.style.gridTemplateColumns =
+      "1fr 1fr 1fr 1fr 1fr 1fr";
+
+    function getNumbers(numOfNumbers) {
+      for (let i = 0; i < numOfNumbers; i++) {
+        const number = document.createElement("div");
+        number.innerHTML = `<div>${i}</div>`;
+
+        number.style.fontSize = "24px";
+        number.style.width = "4em";
+        number.style.height = "3em";
+        number.style.display = "flex";
+        number.style.justifyContent = "center";
+        number.style.alignItems = "center";
+        number.style.color = "white";
+
+        if (i % 2 === 0) {
+          number.style.backgroundColor = "#21bf73";
+        } else if (isPrime(i)) {
+          number.style.backgroundColor = "#fd5e53";
+        } else {
+          number.style.backgroundColor = "#fddb3a";
+        }
+
+        wrapper.appendChild(number);
+      }
+    }
+
+    generateButton.addEventListener("click", () => {
+      const readValue = inputField.value;
+      console.log(typeof readValue);
+      console.log(readValue);
+      // if () {
+      // }
+      // } else if()
+    });
+
+    getNumbers(50);
+  </script>
+</html>
