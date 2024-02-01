@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Keycode display</title>
+  </head>
+  <body style="font-size: 1.2em">
+    <h1 style="text-align: center">Keycode display</h1>
+    <div
+      id="container"
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+      "
+    >
+      <div id="message">Press any keyboard key</div>
+      <div id="keycode">
+        *Keycode of the button you pressed*
+      </div>
+    </div>
+    <script>
+      const container =
+        document.getElementById("container");
+
+      container.style.padding = "2em";
+      const message = document.getElementById("message");
+
+      message.style.padding = "0.5em";
+
+      const keycode = document.getElementById("keycode");
+      keycode.style.padding = "0.5em";
+
+      document.body.addEventListener("keypress", (e) => {
+        keycode.innerHTML = `<p>${e.keyCode}</p><p>${e.key}</p>`;
+      });
+    </script>
+  </body>
+</html>
