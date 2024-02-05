@@ -18,11 +18,11 @@ const countriesAPI = "https://restcountries.com/v2/all";
 
 function updateCaption(id) {
   switch (id) {
-    case "languages":
+    case "population":
       caption.innerText =
         "10 Most Populated Countries in the World";
       break;
-    case "population":
+    case "languages":
       caption.innerText =
         "10 Most Spoken Languages in the World";
       break;
@@ -48,14 +48,11 @@ function getTenMostSpokenLanguages(data) {
     const filteredLanguages = arrayOfLanguages.filter(
       (l) => l === language
     );
-    resultData.push({
-      language,
-      count: filteredLanguages.length,
-    });
+    resultData.push([language, filteredLanguages.length]);
   }
 
   resultData.sort((a, b) => {
-    return b.count - a.count;
+    return b[1] - a[1];
   });
 
   return resultData.slice(0, 10);
@@ -65,24 +62,59 @@ function getTenMostPopulatedCountries(data) {
   const resultData = [];
 
   data.forEach((country) => {
-    resultData.push({
-      country: country.name,
-      population: country.population,
-    });
+    resultData.push([country.name, country.population]);
   });
 
   resultData.sort((a, b) => {
-    return b.population - a.population;
+    return b[1] - a[1];
   });
 
   return resultData.slice(0, 10);
 }
 
+//TODO
 function visualizeStats(data) {
+  //Clean the container
+  statisticsContainer.innerHTML = "";
+
+  const maxValue = data[0][1];
+
   for (member of data) {
+    //Container for all data
+    const fullStatsContainer =
+      document.createElement("div");
+    fullStatsContainer.classList.add(
+      "full-stats-container"
+    );
+
+    const name = document.createElement("p");
+    name.innerText = member[0];
+    const count = document.createElement("p");
+    count.innerText = member[1];
+
+    // Container for "line"
+    const lineOfStatsContainer =
+      document.createElement("div");
+    lineOfStatsContainer.classList.add(
+      "line-of-stats-container"
+    );
+    lineOfStatsContainer.style.width = "15em";
+    lineOfStatsContainer.style.height = "2em";
+
+    // "Line"
     const lineOfStats = document.createElement("div");
-    //TODO
-    // lineOfStats.innerHTML = `<p>${member.country}</p><div></div>`;
+    lineOfStats.classList.add("line-of-stats");
+    lineOfStats.style.height = "100%";
+    lineOfStats.style.width =
+      (member[1] / maxValue) * 100 + "%";
+
+    //Fitting "line" in container
+    lineOfStatsContainer.appendChild(lineOfStats);
+
+    fullStatsContainer.appendChild(name);
+    fullStatsContainer.appendChild(lineOfStatsContainer);
+    fullStatsContainer.appendChild(count);
+    statisticsContainer.appendChild(fullStatsContainer);
   }
 }
 
@@ -98,6 +130,8 @@ const fetchCountriesData = async (type) => {
   try {
     const response = await fetch(countriesAPI);
     const countries = await response.json();
+
+    numOfCountriesSubtitle.innerText = `Currently we have ${countries.length} countries`;
 
     if (type === "languages") {
       const countriesWithLangs =
@@ -135,4 +169,4 @@ const fetchCountriesData = async (type) => {
   }
 };
 
-fetchCountriesData("population");
+// fetchCountriesData("population");
