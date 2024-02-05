@@ -72,7 +72,6 @@ function getTenMostPopulatedCountries(data) {
   return resultData.slice(0, 10);
 }
 
-//TODO
 function visualizeStats(data) {
   //Clean the container
   statisticsContainer.innerHTML = "";
@@ -98,7 +97,7 @@ function visualizeStats(data) {
     lineOfStatsContainer.classList.add(
       "line-of-stats-container"
     );
-    lineOfStatsContainer.style.width = "15em";
+    lineOfStatsContainer.style.width = "100%";
     lineOfStatsContainer.style.height = "2em";
 
     // "Line"
@@ -168,5 +167,3 @@ const fetchCountriesData = async (type) => {
     }
   }
 };
-
-// fetchCountriesData("population");
