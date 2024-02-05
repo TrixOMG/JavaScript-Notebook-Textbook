@@ -1,55 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Solar System</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="./styles/styles.css" rel="stylesheet" />
-  </head>
-  <body>
-    <header>
-      <h1>Calculate a weight of an object on a planet</h1>
 
-      <div class="inputs-container">
-        <input
-          type="number"
-          id="mass"
-          placeholder="Mass in Kilograms"
-        />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar System</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet" />
+  <link href="./styles/styles.css" rel="stylesheet" />
+</head>
 
-        <select>
-          <option value="none">--select planet--</option>
-        </select>
+<body>
+  <header>
+    <h1>Calculate a weight of an object on a planet</h1>
 
-        <button>Calculate weight</button>
+    <div class="inputs-container">
+      <input type="number" id="mass" placeholder="Mass in Kilograms" />
+
+      <select>
+        <option value="none">--select planet--</option>
+      </select>
+
+      <button>Calculate weight</button>
+    </div>
+  </header>
+
+  <main>
+   <div class="flex-container">
+      <div class="flex-item image" id="planet-container">
+        <img src="./images/earth.png" class="planet-image" id="planet-img" />
       </div>
-    </header>
 
-    <main>
-      <div class="flex-container">
-        <div class="flex-item image" id="planet-container">
-          <img
-            src="./images/earth.png"
-            class="planet-image"
-            id="planet-img"
-          />
-        </div>
+      <div class="flex-item description" id="description" style="display: none"></div>
+    </div>
+  </main>
 
-        <div
-          class="flex-item description"
-          id="description"
-          style="display: none"
-        ></div>
-      </div>
-    </main>
+  <script src="./scripts/main.js"></script>
+</body>
 
-    <script src="./scripts/main.js"></script>
-  </body>
 </html>

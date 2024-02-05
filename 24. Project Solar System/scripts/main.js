@@ -5,9 +5,7 @@ const submitButton = document.querySelector("button");
 
 //Get Visuals
 const planetImg = document.getElementById("planet-img");
-const planetContainer = document.getElementById(
-  "planet-container"
-);
+const planetContainer = document.getElementById("planet-container");
 const description = document.getElementById("description");
 
 //Add options to select
@@ -148,10 +146,8 @@ submitButton.addEventListener("click", () => {
   calculatedWeight.style.justifyContent = "center";
   calculatedWeight.style.alignItems = "center";
   calculatedWeight.style.borderRadius = "100%";
-  calculatedWeight.style.backgroundColor =
-    "rgba(54, 54, 92, 0.4)";
-  calculatedWeight.innerText =
-    calculateWeight(select.value, readValue) + " N";
+  calculatedWeight.style.backgroundColor = "rgba(54, 54, 92, 0.4)";
+  calculatedWeight.innerText = calculateWeight(select.value, readValue) + " N";
 
   description.appendChild(calculatedWeight);
 });
