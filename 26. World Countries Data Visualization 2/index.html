@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
@@ -12,9 +12,49 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/styles.css" />
-    <title>World Countries Data 2</title>
-</head>
-<body>
-    
-</body>
+    <title>World Countries Data</title>
+  </head>
+
+  <body>
+    <section>
+      <header>
+        <h1>World Data 2</h1>
+        <p id="numOfCountries">
+          Total number of countries:
+        </p>
+      </header>
+
+      <div class="wrapper">
+        <section class="graph-buttons">
+          <button
+            class="main-button"
+            id="starting-word-button"
+          >
+            STARTING WORD
+          </button>
+          <button class="main-button" id="any-word-button">
+            SEARCH WITH ANY WORD
+          </button>
+          <button
+            class="main-button"
+            id="change-order-button"
+          >
+            <!-- TODO: insert icon -->
+            a-z sort icon
+          </button>
+
+          <div class="wrapper">
+            <input type="text" />
+            <button id="search-button">
+              <!-- TODO: insert search icon -->
+              search icon
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+    <main></main>
+    <script src="./data(in case fetch doesnt work)/data.js"></script>
+    <script src="./scripts/main.js"></script>
+  </body>
 </html>
