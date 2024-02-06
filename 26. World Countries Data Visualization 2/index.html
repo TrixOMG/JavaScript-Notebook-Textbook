@@ -18,42 +18,44 @@
   <body>
     <section>
       <header>
-        <h1>World Data 2</h1>
-        <p id="numOfCountries">
-          Total number of countries:
-        </p>
+        <h1>WORLD COUNTRIES LIST</h1>
+        <p>Total number of countries:</p>
       </header>
 
-      <div class="wrapper">
-        <section class="graph-buttons">
-          <button
-            class="main-button"
-            id="starting-word-button"
-          >
-            STARTING WORD
-          </button>
-          <button class="main-button" id="any-word-button">
-            SEARCH WITH ANY WORD
-          </button>
-          <button
-            class="main-button"
-            id="change-order-button"
-          >
-            <!-- TODO: insert icon -->
-            a-z sort icon
-          </button>
+      <section class="wrapper">
+        <button
+          class="main-button"
+          id="starting-word-button"
+        >
+          STARTING WORD
+        </button>
+        <button class="main-button" id="any-word-button">
+          SEARCH WITH ANY WORD
+        </button>
+        <button
+          class="main-button"
+          id="change-order-button"
+        >
+          <img
+            src="./images/sort_icon.svg"
+            alt="a-z sort"
+            class="icon"
+          />
+        </button>
 
-          <div class="wrapper">
-            <input type="text" />
-            <button id="search-button">
-              <!-- TODO: insert search icon -->
-              search icon
-            </button>
-          </div>
+        <section class="wrapper">
+          <input type="text" />
+          <button id="search-button">
+            <img
+              src="./images/search_icon.svg"
+              alt="search icon"
+              class="icon"
+            />
+          </button>
         </section>
-      </div>
+      </section>
     </section>
-    <main></main>
+    <main><div id="countries-cards-container"></div></main>
     <script src="./data(in case fetch doesnt work)/data.js"></script>
     <script src="./scripts/main.js"></script>
   </body>
