@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat"
@@ -16,28 +13,38 @@
   </head>
 
   <body>
-    <header>
-      <h1>World Countries Data</h1>
-      <p id="numOfCountries-subtitle">
-        Currently we have ??? countries
-      </p>
-    </header>
-    <main>
+    <section>
+      <header>
+        <h1>World Countries List</h1>
+        <p id="numOfCountries">Total number of countries:</p>
+      </header>
+
       <div class="wrapper">
+
         <section class="graph-buttons">
-          <button class="population" id="population-button">
-            POPULATION
+          <button class="main-button" id="starting-word-button">
+            STARTING WORD
           </button>
-          <button class="languages" id="languages-button">
-            LANGUAGES
+          <button class="main-button" id="any-word-button">
+            SEARCH WITH ANY WORD
           </button>
+          <button class="main-button" id="change-order-button">
+            <!-- TODO: insert icon -->
+            a-z sort icon
+          </button>
+          
+          <div class="wrapper">
+            <input type="text"/>
+            <button id="search-button">
+              <!-- TODO: insert search icon -->
+              search icon
+            </button>
+          </div>
+
         </section>
-        <p id="caption"></p>
-        <section class="graphs">
-          <div class="graph-wrapper" id="stat"></div>
-        </section>
-      </div>
-    </main>
+     </div>
+    </section>
+    <main></main>
     <script src="./data(in case fetch doesnt work)/data.js"></script>
     <script src="./scripts/main.js"></script>
   </body>
