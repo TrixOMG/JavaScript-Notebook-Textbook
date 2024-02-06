@@ -1,62 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <title>World Countries Data</title>
-  </head>
 
-  <body>
-    <section>
-      <header>
-        <h1>WORLD COUNTRIES LIST</h1>
-        <p>Total number of countries:</p>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <title>World Countries Data</title>
+</head>
 
-      <section class="wrapper">
-        <button
-          class="main-button"
-          id="starting-word-button"
-        >
-          STARTING WORD
-        </button>
-        <button class="main-button" id="any-word-button">
-          SEARCH WITH ANY WORD
-        </button>
-        <button
-          class="main-button"
-          id="change-order-button"
-        >
-          <img
-            src="./images/sort_icon.svg"
-            alt="a-z sort"
-            class="icon"
-          />
-        </button>
+<body>
+  <section class="hero-section">
+    <header>
+      <h1>WORLD COUNTRIES LIST</h1>
+      <p id="total-num">Total number of countries: ???</p>
+    </header>
 
-        <section class="wrapper">
-          <input type="text" />
-          <button id="search-button">
-            <img
-              src="./images/search_icon.svg"
-              alt="search icon"
-              class="icon"
-            />
-          </button>
-        </section>
-      </section>
+    <section class="wrapper">
+      <button class="main-button" id="starting-word-button">
+        STARTING WORD
+      </button>
+      <button class="main-button" id="any-word-button">
+        SEARCH WITH ANY WORD
+      </button>
+      <button class="main-button" id="change-order-button">
+        <img src="./images/sort_icon.svg" alt="a-z sort" class="icon" />
+      </button>
     </section>
-    <main><div id="countries-cards-container"></div></main>
-    <script src="./data(in case fetch doesnt work)/data.js"></script>
-    <script src="./scripts/main.js"></script>
-  </body>
+
+    <section class="wrapper">
+      <input type="text" placeholder="Search country..." />
+      <div id="search-button">
+        <img src="./images/search_icon.svg" alt="search icon" class="search-icon" />
+      </div>
+    </section>
+    <p class="message-p" id="message"></p>
+  </section>
+  <main>
+    <div id="countries-cards-container" class="countries-container"></div>
+  </main>
+  <script src="./data(in case fetch doesnt work)/data.js"></script>
+  <script src="./scripts/main.js"></script>
+</body>
+
 </html>
