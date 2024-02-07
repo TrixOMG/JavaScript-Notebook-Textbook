@@ -1,6 +1,9 @@
 const countriesAPI = "https://restcountries.com/v2/all";
-
 const fetchedCountriesData = [];
+
+let typeOfSearch = "starting-word";
+let searchText = "";
+let order = "a-z";
 
 const countriesContainer = document.getElementById(
   "countries-cards-container"
@@ -16,15 +19,8 @@ const anyWordBtn = document.getElementById(
 const changeOrderBtn = document.getElementById(
   "change-order-button"
 );
-
-for (let i = 0; i < 50; i++) {
-  const countryCard = document.createElement("div");
-  countryCard.style.width = "5em";
-  countryCard.style.height = "5em";
-  countryCard.style.backgroundColor = "red";
-  countriesContainer.appendChild(countryCard);
-}
-console.log(countriesContainer);
+const searchButton =
+  document.getElementById("search-button");
 
 function updateCaption(num) {
   const numberParagraph =
@@ -33,14 +29,66 @@ function updateCaption(num) {
     "Total number of countries: " + num;
 }
 
-function visualizeStats(type, search, order) {
-  if (search === "") {
-    // Показываем все карточки
-    // fetchedCountriesData
-    return;
-  }
-  //Clean the container
+function visualizeStats() {
+  // Clean the container
   countriesContainer.innerHTML = "";
+
+  const fetchedCountriesDataCopy = fetchedCountriesData;
+
+  // TODO: A LOT
+  switch (order) {
+    case "a-z":
+      // if there is no search
+      if (
+        searchText === "" &&
+        typeOfSearch === "starting-word"
+      ) {
+        fetchedCountriesDataCopy.forEach((country) => {
+          const countryCard = document.createElement("div");
+          countryCard.classList.add("country-card");
+          countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
+          countriesContainer.appendChild(countryCard);
+        });
+      } else {
+        fetchedCountriesDataCopy
+          .filter((c) =>
+            c.toLowerCase().startsWith(searchText, 0)
+          )
+          .forEach((country) => {
+            const countryCard =
+              document.createElement("div");
+            countryCard.classList.add("country-card");
+            countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
+            countriesContainer.appendChild(countryCard);
+          });
+      }
+      break;
+
+    case "z-a":
+      // if there is no search
+      if (
+        searchText === "" &&
+        typeOfSearch === "starting-word"
+      ) {
+        fetchedCountriesDataCopy
+          .reverse()
+          .forEach((country) => {
+            const countryCard =
+              document.createElement("div");
+            countryCard.classList.add("country-card");
+            countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
+            countriesContainer.appendChild(countryCard);
+          });
+      } else if (
+        searchText === "" &&
+        typeOfSearch === "any-word"
+      ) {
+      }
+      break;
+
+    default:
+      console.error("Wrong order passed to visualizeStats");
+  }
 }
 
 function toggleMainButtonsColors(btn) {
@@ -66,18 +114,29 @@ function toggleMainButtonsColors(btn) {
 }
 
 startingWordBtn.addEventListener("click", () => {
-  // TODO
   toggleMainButtonsColors("starting-word-button");
+  typeOfSearch = "starting-word";
 });
 
 anyWordBtn.addEventListener("click", () => {
-  // TODO
   toggleMainButtonsColors("any-word-button");
+  typeOfSearch = "any-word";
 });
 
 changeOrderBtn.addEventListener("click", () => {
-  // TODO
-  // visualizeStats(,);
+  if (order === "a-z") {
+    order = "z-a";
+  } else {
+    order = "a-z";
+  }
+  visualizeStats();
+});
+
+searchButton.addEventListener("click", () => {
+  searchText = document
+    .getElementById("search-input")
+    .value.toLowerCase();
+  visualizeStats();
 });
 
 const fetchCountriesData = async () => {
@@ -88,6 +147,8 @@ const fetchCountriesData = async () => {
     countries.forEach((country) => {
       fetchedCountriesData.push(country.name);
     });
+
+    visualizeStats();
 
     updateCaption(countries.length);
   } catch (err) {
@@ -100,10 +161,11 @@ const fetchCountriesData = async () => {
       fetchedCountriesData.push(country.name);
     });
 
+    visualizeStats();
+
     updateCaption(countries.length);
   }
 };
 
 toggleMainButtonsColors("starting-word-button");
-visualizeStats("starting-word", "", "a-z");
 fetchCountriesData();

@@ -72,6 +72,39 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0.4em;
+  padding: 1em;
+}
+
+.country-card {
+  width: 9em;
+  height: 9em;
+  position: relative;
+  background-image: url("../images/map_image.jpg");
+  background-size: cover;
+  margin: auto;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.country-card::before {
+  content: "";
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.5) 35%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+  background-position: center;
 }
 
 main {
