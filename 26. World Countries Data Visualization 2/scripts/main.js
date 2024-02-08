@@ -1,9 +1,10 @@
 const countriesAPI = "https://restcountries.com/v2/all";
 const fetchedCountriesData = [];
+let copiedCountriesData = [];
 
-let typeOfSearch = "starting-word";
+let typeOfSearch = "starting-word"; // or any-word
 let searchText = "";
-let order = "a-z";
+let order = "a-z"; // or "z-a"
 
 const countriesContainer = document.getElementById(
   "countries-cards-container"
@@ -19,8 +20,11 @@ const anyWordBtn = document.getElementById(
 const changeOrderBtn = document.getElementById(
   "change-order-button"
 );
-const searchButton =
-  document.getElementById("search-button");
+
+// Input
+const searchInput = document.getElementById("search-input");
+
+const message = document.getElementById("message");
 
 function updateCaption(num) {
   const numberParagraph =
@@ -29,66 +33,52 @@ function updateCaption(num) {
     "Total number of countries: " + num;
 }
 
+function filterCountriesBySearch() {
+  copiedCountriesData = fetchedCountriesData;
+
+  if (searchText === "") {
+    visualizeStats();
+    return;
+  }
+
+  if (typeOfSearch === "starting-word") {
+    copiedCountriesData = copiedCountriesData.filter((c) =>
+      c.toLowerCase().startsWith(searchText, 0)
+    );
+  } else if (typeOfSearch === "any-word") {
+    copiedCountriesData = copiedCountriesData.filter((c) =>
+      c.toLowerCase().includes(searchText)
+    );
+  }
+  visualizeStats();
+}
+
+// only changes order
+function changeFinalOrder() {
+  copiedCountriesData.reverse();
+  visualizeStats();
+}
+
+// only renders cards and messages
 function visualizeStats() {
-  // Clean the container
+  if (searchText !== "") {
+    if (typeOfSearch === "starting-word") {
+      message.innerHTML = `Number of countries that start with <span style="color: rgb(255,0,0)">"${searchText}"</span> is: <span style="color: #bdefba">${copiedCountriesData.length}</span>`;
+    } else if (typeOfSearch === "any-word") {
+      message.innerHTML = `Number of countries containing <span style="color: red">"${searchText}"</span> is: <span style="color: #bdefba">${copiedCountriesData.length}</span>`;
+    }
+  } else {
+    message.innerText = "";
+  }
+
   countriesContainer.innerHTML = "";
 
-  const fetchedCountriesDataCopy = fetchedCountriesData;
-
-  // TODO: A LOT
-  switch (order) {
-    case "a-z":
-      // if there is no search
-      if (
-        searchText === "" &&
-        typeOfSearch === "starting-word"
-      ) {
-        fetchedCountriesDataCopy.forEach((country) => {
-          const countryCard = document.createElement("div");
-          countryCard.classList.add("country-card");
-          countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
-          countriesContainer.appendChild(countryCard);
-        });
-      } else {
-        fetchedCountriesDataCopy
-          .filter((c) =>
-            c.toLowerCase().startsWith(searchText, 0)
-          )
-          .forEach((country) => {
-            const countryCard =
-              document.createElement("div");
-            countryCard.classList.add("country-card");
-            countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
-            countriesContainer.appendChild(countryCard);
-          });
-      }
-      break;
-
-    case "z-a":
-      // if there is no search
-      if (
-        searchText === "" &&
-        typeOfSearch === "starting-word"
-      ) {
-        fetchedCountriesDataCopy
-          .reverse()
-          .forEach((country) => {
-            const countryCard =
-              document.createElement("div");
-            countryCard.classList.add("country-card");
-            countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
-            countriesContainer.appendChild(countryCard);
-          });
-      } else if (
-        searchText === "" &&
-        typeOfSearch === "any-word"
-      ) {
-      }
-      break;
-
-    default:
-      console.error("Wrong order passed to visualizeStats");
-  }
+  copiedCountriesData.forEach((country) => {
+    const countryCard = document.createElement("div");
+    countryCard.classList.add("country-card");
+    countryCard.innerHTML = `<p style = "z-index: 3">${country}</p>`;
+    countriesContainer.appendChild(countryCard);
+  });
 }
 
 function toggleMainButtonsColors(btn) {
@@ -116,41 +106,33 @@ function toggleMainButtonsColors(btn) {
 startingWordBtn.addEventListener("click", () => {
   toggleMainButtonsColors("starting-word-button");
   typeOfSearch = "starting-word";
+  filterCountriesBySearch();
 });
 
 anyWordBtn.addEventListener("click", () => {
   toggleMainButtonsColors("any-word-button");
   typeOfSearch = "any-word";
+  filterCountriesBySearch();
 });
 
 changeOrderBtn.addEventListener("click", () => {
-  if (order === "a-z") {
-    order = "z-a";
-  } else {
-    order = "a-z";
-  }
-  visualizeStats();
+  changeFinalOrder();
 });
 
-searchButton.addEventListener("click", () => {
-  searchText = document
-    .getElementById("search-input")
-    .value.toLowerCase();
-  visualizeStats();
+searchInput.addEventListener("input", () => {
+  searchText = searchInput.value.toLowerCase();
+  filterCountriesBySearch();
 });
 
 const fetchCountriesData = async () => {
   try {
     const response = await fetch(countriesAPI);
     const countries = await response.json();
-
     countries.forEach((country) => {
       fetchedCountriesData.push(country.name);
     });
-
-    visualizeStats();
-
-    updateCaption(countries.length);
+    filterCountriesBySearch();
+    updateCaption(fetchedCountriesData.length);
   } catch (err) {
     console.error(err);
     // In case service is unavailable
@@ -161,9 +143,9 @@ const fetchCountriesData = async () => {
       fetchedCountriesData.push(country.name);
     });
 
-    visualizeStats();
+    filterCountriesBySearch();
 
-    updateCaption(countries.length);
+    updateCaption(fetchedCountriesData.length);
   }
 };
 

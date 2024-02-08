@@ -104,8 +104,6 @@ body {
     rgba(0, 0, 0, 0) 100%
   );
 }
-  background-position: center;
-}
 
 main {
   padding: 1em;
@@ -116,6 +114,7 @@ p {
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 0.5em;
+  height: 1.2em;
 }
 
 h1 {
