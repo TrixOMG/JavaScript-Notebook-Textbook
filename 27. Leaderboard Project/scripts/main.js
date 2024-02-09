@@ -12,6 +12,10 @@ const playerEntriesWrapper = document.getElementById("player-entries-wrapper");
 
 //Global players variable
 const players = [];
+//
+//TODO:
+//[ ] Sort players by score when it's changed
+//[ ]
 
 function generatePlayerId() {
   let randomId = [];
@@ -43,28 +47,35 @@ function getProperDate() {
   return `${month} ${date}, ${year} ${hours}:${minutes}`;
 }
 
-function deletePlayerEntry() {
+function deletePlayer(id) {
   players.splice(
-    players.findIndex((p) => p.id === event.target.id),
+    players.findIndex((p) => p.id === id),
     1,
   );
-  renderPlayerEntries();
+
+  renderPlayers();
 }
 
-function plusFivePoints() {
-  players.forEach((p) => {
-    if (p.id === id) p.score += 5;
-    return;
-  });
-  renderPlayerEntries();
+function plusFiveScore(id) {
+  for (const player of players) {
+    if (player.id === id) {
+      player.score = parseInt(player.score) + 5;
+      renderPlayers();
+      return;
+    }
+  }
 }
 
-function minusFivePoints() {
-  players.forEach((p) => {
-    if (p.id === id) p.score -= 5;
-    return;
-  });
-  renderPlayerEntries();
+function minusFiveScore(id) {
+  for (const player of players) {
+    if (player.id === id) {
+      player.score = parseInt(player.score) - 5;
+      renderPlayers();
+      return;
+    }
+  }
+
+  renderPlayers();
 }
 
 function addPlayer() {
@@ -81,38 +92,134 @@ function addPlayer() {
     return;
   }
 
-  //Adding entry to global players variable
   players.push({
     id: generatePlayerId(),
-    fristName: nameInput.value,
+    name: nameInput.value,
     lastName: lastNameInput.value,
     date: getProperDate(),
     country: countryInput.value,
     score: scoreInput.value,
   });
 
-  renderPlayerEntries();
+  renderPlayers();
 }
 
-function renderPlayerEntries() {
+function renderPlayers() {
+  playerEntriesWrapper.innerHTML = "";
+
+  players.sort((a, b) => {
+    return parseInt(b.score) - parseInt(a.score);
+  });
+
   for (const player of players) {
     const newPlayerEntry = document.createElement("div");
     newPlayerEntry.classList.add("player-entry");
     newPlayerEntry.id = player.id;
 
-    newPlayerEntry.innerHTML = `
-  <div class="name-date-wrapper"><p>${nameInput.value}</p><p>${getProperDate()}</p></div>
-  <p>${countryInput.value}</p>
-  <p>${scoreInput.value}</p>
-  <button onclick="deletePlayerEntry()" class="player-entry-button"><img src="./images/trash-icon.svg" alt="trash icon" /></button>
-  <button onclick="plusFivePoints()" class="player-entry-button">+5</button>
-  <button onclick="minusFivePoints()" class="player-entry-button">-5</button>
-`;
+    const nameDateWrapper = document.createElement("div");
+    nameDateWrapper.classList.add("name-date-wrapper");
+    nameDateWrapper.innerHTML = `<p>${player.name} ${player.lastName}</p><p>${getProperDate()}</p>`;
+
+    const countryP = document.createElement("p");
+    countryP.innerText = `${player.country}`;
+
+    const scoreP = document.createElement("p");
+    scoreP.innerText = `${player.score}`;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("player-entry-button");
+    deleteButton.innerHTML = `<img src="./images/trash-icon.svg" alt="trash icon" />`;
+    deleteButton.addEventListener("click", () => {
+      deletePlayer(player.id);
+    });
+
+    const addButton = document.createElement("button");
+    addButton.classList.add("player-entry-button");
+    addButton.innerText = "+5";
+    addButton.addEventListener("click", () => {
+      plusFiveScore(player.id);
+    });
+
+    const subtractButton = document.createElement("button");
+    subtractButton.classList.add("player-entry-button");
+    subtractButton.innerText = "-5";
+    subtractButton.addEventListener("click", () => {
+      minusFiveScore(player.id);
+    });
+
+    newPlayerEntry.appendChild(nameDateWrapper);
+    newPlayerEntry.appendChild(countryP);
+    newPlayerEntry.appendChild(scoreP);
+    newPlayerEntry.appendChild(deleteButton);
+    newPlayerEntry.appendChild(addButton);
+    newPlayerEntry.appendChild(subtractButton);
+
     playerEntriesWrapper.appendChild(newPlayerEntry);
   }
-
 }
 
 addPlayerButton.addEventListener("click", () => {
   addPlayer();
+  nameInput.value = "";
+  lastNameInput.value = "";
+  countryInput.value = "";
+  scoreInput.value = "";
 });
+
+/*function addPlayer() {
+  if (
+    nameInput.value === "" ||
+    lastNameInput.value === "" ||
+    countryInput.value === "" ||
+    scoreInput.valueAsNumber === ""
+  ) {
+    message.innerText = "All inputs are required";
+    return;
+  } else if (isNaN(scoreInput.valueAsNumber)) {
+    message.innerText = "Player Score value should be a whole number";
+    return;
+  }
+
+  const newPlayerEntry = document.createElement("div");
+  newPlayerEntry.classList.add("player-entry");
+
+  const nameDateWrapper = document.createElement("div");
+  nameDateWrapper.classList.add("name-date-wrapper");
+  nameDateWrapper.innerHTML = `<p>${nameInput.value} ${lastNameInput.value}</p><p>${getProperDate()}</p>`;
+
+  const countryP = document.createElement("p");
+  countryP.innerText = `${countryInput.value}`;
+
+  const scoreP = document.createElement("p");
+  scoreP.innerText = `${scoreInput.value}`;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("player-entry-button");
+  deleteButton.innerHTML = `<img src="./images/trash-icon.svg" alt="trash icon" />`;
+  deleteButton.addEventListener("click", () => {
+    playerEntriesWrapper.removeChild(newPlayerEntry);
+  });
+
+  const addButton = document.createElement("button");
+  addButton.classList.add("player-entry-button");
+  addButton.innerText = "+5";
+  addButton.addEventListener("click", () => {
+    scoreP.innerText = parseInt(scoreP.innerText) + 5;
+  });
+
+  const subtractButton = document.createElement("button");
+  subtractButton.classList.add("player-entry-button");
+  subtractButton.innerText = "-5";
+  subtractButton.addEventListener("click", () => {
+    scoreP.innerText = parseInt(scoreP.innerText) - 5;
+  });
+
+  newPlayerEntry.appendChild(nameDateWrapper);
+  newPlayerEntry.appendChild(countryP);
+  newPlayerEntry.appendChild(scoreP);
+  newPlayerEntry.appendChild(deleteButton);
+  newPlayerEntry.appendChild(addButton);
+  newPlayerEntry.appendChild(subtractButton);
+
+ playerEntriesWrapper.appendChild(newPlayerEntry);
+}*/
