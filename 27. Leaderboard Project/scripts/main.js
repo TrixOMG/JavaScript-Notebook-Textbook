@@ -12,10 +12,16 @@ const playerEntriesWrapper = document.getElementById("player-entries-wrapper");
 
 //Global players variable
 const players = [];
-//
+
 //TODO:
-//[ ] Sort players by score when it's changed
-//[ ]
+//[X] Add button wrapper
+//[X] Style buttons
+//[X] Get trash icon
+//[X] Set trash icon color to red
+//[ ] Get autocomplete box to work
+//[ ] Style the autocomplete box
+//[ ] Style inputs
+//[ ] Style player card
 
 function generatePlayerId() {
   let randomId = [];
@@ -74,8 +80,6 @@ function minusFiveScore(id) {
       return;
     }
   }
-
-  renderPlayers();
 }
 
 function addPlayer() {
@@ -118,17 +122,23 @@ function renderPlayers() {
 
     const nameDateWrapper = document.createElement("div");
     nameDateWrapper.classList.add("name-date-wrapper");
-    nameDateWrapper.innerHTML = `<p>${player.name} ${player.lastName}</p><p>${getProperDate()}</p>`;
+    nameDateWrapper.innerHTML = `<p>${player.name} ${player.lastName}</p><p class="player-card-date">${getProperDate()}</p>`;
 
     const countryP = document.createElement("p");
-    countryP.innerText = `${player.country}`;
+    countryP.innerText = `${player.country.toUpperCase()}`;
+    countryP.classList.add("player-card-p");
 
     const scoreP = document.createElement("p");
     scoreP.innerText = `${player.score}`;
+    scoreP.classList.add("player-card-p");
+
+    //adding button wrapper
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.classList.add("button-wrapper");
 
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("player-entry-button");
-    deleteButton.innerHTML = `<img src="./images/trash-icon.svg" alt="trash icon" />`;
+    deleteButton.innerHTML = `<img src="./images/trash-icon.svg" alt="trash icon" class="trash-icon"/>`;
     deleteButton.addEventListener("click", () => {
       deletePlayer(player.id);
     });
@@ -147,12 +157,14 @@ function renderPlayers() {
       minusFiveScore(player.id);
     });
 
+    buttonWrapper.appendChild(deleteButton);
+    buttonWrapper.appendChild(addButton);
+    buttonWrapper.appendChild(subtractButton);
+
     newPlayerEntry.appendChild(nameDateWrapper);
     newPlayerEntry.appendChild(countryP);
     newPlayerEntry.appendChild(scoreP);
-    newPlayerEntry.appendChild(deleteButton);
-    newPlayerEntry.appendChild(addButton);
-    newPlayerEntry.appendChild(subtractButton);
+    newPlayerEntry.appendChild(buttonWrapper);
 
     playerEntriesWrapper.appendChild(newPlayerEntry);
   }
@@ -165,61 +177,3 @@ addPlayerButton.addEventListener("click", () => {
   countryInput.value = "";
   scoreInput.value = "";
 });
-
-/*function addPlayer() {
-  if (
-    nameInput.value === "" ||
-    lastNameInput.value === "" ||
-    countryInput.value === "" ||
-    scoreInput.valueAsNumber === ""
-  ) {
-    message.innerText = "All inputs are required";
-    return;
-  } else if (isNaN(scoreInput.valueAsNumber)) {
-    message.innerText = "Player Score value should be a whole number";
-    return;
-  }
-
-  const newPlayerEntry = document.createElement("div");
-  newPlayerEntry.classList.add("player-entry");
-
-  const nameDateWrapper = document.createElement("div");
-  nameDateWrapper.classList.add("name-date-wrapper");
-  nameDateWrapper.innerHTML = `<p>${nameInput.value} ${lastNameInput.value}</p><p>${getProperDate()}</p>`;
-
-  const countryP = document.createElement("p");
-  countryP.innerText = `${countryInput.value}`;
-
-  const scoreP = document.createElement("p");
-  scoreP.innerText = `${scoreInput.value}`;
-
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("player-entry-button");
-  deleteButton.innerHTML = `<img src="./images/trash-icon.svg" alt="trash icon" />`;
-  deleteButton.addEventListener("click", () => {
-    playerEntriesWrapper.removeChild(newPlayerEntry);
-  });
-
-  const addButton = document.createElement("button");
-  addButton.classList.add("player-entry-button");
-  addButton.innerText = "+5";
-  addButton.addEventListener("click", () => {
-    scoreP.innerText = parseInt(scoreP.innerText) + 5;
-  });
-
-  const subtractButton = document.createElement("button");
-  subtractButton.classList.add("player-entry-button");
-  subtractButton.innerText = "-5";
-  subtractButton.addEventListener("click", () => {
-    scoreP.innerText = parseInt(scoreP.innerText) - 5;
-  });
-
-  newPlayerEntry.appendChild(nameDateWrapper);
-  newPlayerEntry.appendChild(countryP);
-  newPlayerEntry.appendChild(scoreP);
-  newPlayerEntry.appendChild(deleteButton);
-  newPlayerEntry.appendChild(addButton);
-  newPlayerEntry.appendChild(subtractButton);
-
- playerEntriesWrapper.appendChild(newPlayerEntry);
-}*/
