@@ -1,46 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Leaderboard project</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/styles.css" />
-  <title>Leaderboard project</title>
-</head>
+  <body>
+    <header class="main-blocks-margins">
+      <h1>Leaderboard</h1>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="name-input"
+          placeholder="First Name"
+          class="main-input"
+        />
 
-<body>
-  <header class="main-blocks-margins">
-    <h1>Leaderboard</h1>
-    <div class="input-wrapper">
-      <div style="position: relative">
-        <input type="text" id="name-input" placeholder="First Name" />
-        <div id="name-suggestion-list" class="suggestion-list"></div>
+        <input
+          type="text"
+          id="lastname-input"
+          placeholder="Last Name"
+          class="main-input"
+        />
+
+        <input
+          type="text"
+          id="country-input"
+          placeholder="Country"
+          class="main-input"
+        />
+
+        <input
+          type="number"
+          id="score-input"
+          placeholder="Player Score"
+          class="main-input"
+        />
+        <button id="add-player" class="add-player-button">
+          Add Player
+        </button>
       </div>
+      <p id="message" class="message-p"></p>
+    </header>
+    <main class="main-blocks-margins">
+      <section
+        id="player-entries-wrapper"
+        class="wrapper"
+      ></section>
+    </main>
+  </body>
 
-      <div style="position: relative">
-        <input type="text" id="lastname-input" placeholder="Last Name" />
-        <div id="lastname-suggestion-list" class="suggestion-list"></div>
-      </div>
-
-      <div style="position: relative">
-        <input type="text" id="country-input" placeholder="Country" />
-        <div id="country-suggestion-list" class="suggestion-list"></div>
-      </div>
-
-      <div>
-        <input type="number" id="score-input" placeholder="Player Score" />
-      </div>
-      <button id="add-player" class="add-player-button">Add Player</button>
-    </div>
-    <p id="message" class="message-p"></p>
-  </header>
-  <main class="main-blocks-margins">
-    <section id="player-entries-wrapper" class="wrapper"></section>
-  </main>
-</body>
-
-<script src="scripts/main.js"></script>
-
+  <script src="scripts/main.js"></script>
 </html>
