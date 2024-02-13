@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Form Validation</title>
+  </head>
+  <body>
+    <main>
+      <form onsubmit="validateForm(event)">
+        <h1>Validating Web Forms</h1>
+
+        <label for="first-name-input">First Name</label>
+        <input type="text" id="first-name-input" required />
+        <p id="first-name-error"></p>
+
+        <label for="last-name-input">Last Name</label>
+        <input type="text" id="last-name-input" required />
+        <p id="last-name-error"></p>
+
+        <label for="email-input">Email</label>
+        <input type="text" id="email-input" required />
+        <p id="email-error"></p>
+
+        <label for="password-input">Password</label>
+        <input type="text" id="password-input" required />
+        <p id="password-error"></p>
+
+        <label for="phone-input">Telephone</label>
+        <input type="text" id="phone-input" required />
+        <p id="phone-error"></p>
+
+        <label for="bio-input">Your bio</label>
+        <input type="text" id="bio-input" required />
+        <p id="bio-error"></p>
+        <button class="submit-button" type="submit">
+          Submit
+        </button>
+      </form>
+    </main>
+  </body>
+  <script src="./scripts/main.js"></script>
+</html>
