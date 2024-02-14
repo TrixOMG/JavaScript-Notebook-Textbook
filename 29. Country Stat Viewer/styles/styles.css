@@ -1,0 +1,25 @@
+* {
+  font-family: Montserrat;
+}
+
+main {
+  margin-inline: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+input {
+  margin-bottom: 0.3em;
+  font-size: 1.2em;
+  outline: none;
+  border: 2px solid gray;
+  border-radius: 0.2em;
+  padding-inline: 0.5em;
+  padding-block: 0.2em;
+}
