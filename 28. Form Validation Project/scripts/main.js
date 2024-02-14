@@ -32,6 +32,12 @@ const phoneRegEx =
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/;
 const bioRegEx = /^[a-z0-9_-]{8,50}$/;
 
+function validate(){
+  e.preventDefault();
+  const validationArray = [];
+
+}
+
 function validateForm(e) {
   e.preventDefault();
   const validationArray = [];

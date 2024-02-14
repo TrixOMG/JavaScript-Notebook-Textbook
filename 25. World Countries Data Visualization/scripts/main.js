@@ -98,7 +98,7 @@ function visualizeStats(data) {
       "line-of-stats-container"
     );
     lineOfStatsContainer.style.width = "100%";
-    lineOfStatsContainer.style.height = "2em";
+    lineOfStatsContainer.style.height = "100%";
 
     // "Line"
     const lineOfStats = document.createElement("div");
