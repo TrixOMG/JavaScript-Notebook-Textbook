@@ -20,27 +20,50 @@
 
         <label for="first-name-input">First Name</label>
         <input type="text" id="first-name-input" required />
-        <p id="first-name-error"></p>
+        <p id="first-name-error" style="display: none">
+          First name must contain only letters and be at
+          least 3 characters long
+        </p>
 
         <label for="last-name-input">Last Name</label>
         <input type="text" id="last-name-input" required />
-        <p id="last-name-error"></p>
+        <p id="last-name-error" style="display: none">
+          Last name must contain only letters and be at
+          least 3 characters long
+        </p>
 
         <label for="email-input">Email</label>
         <input type="text" id="email-input" required />
-        <p id="email-error"></p>
+        <p id="email-error" style="display: none">
+          Email must be a valid address, e.g.
+          example@example.com
+        </p>
 
         <label for="password-input">Password</label>
-        <input type="text" id="password-input" required />
-        <p id="password-error"></p>
+        <input
+          type="password"
+          id="password-input"
+          required
+        />
+        <p id="password-error" style="display: none">
+          Password must be alphanumeric (@, ., _ and - are
+          also allowed) and be between 6 - 20 characters
+          long
+        </p>
 
         <label for="phone-input">Telephone</label>
         <input type="text" id="phone-input" required />
-        <p id="phone-error"></p>
+        <p id="phone-error" style="display: none">
+          Phone must be a valid phone number (should not
+          contain +)
+        </p>
 
         <label for="bio-input">Your bio</label>
         <input type="text" id="bio-input" required />
-        <p id="bio-error"></p>
+        <p id="bio-error" style="display: none">
+          Bio must be only lowercase letters, underscores,
+          hyphens and be 8 - 50 characters long
+        </p>
 
         <button class="submit-button" type="submit">
           Submit
