@@ -13,10 +13,59 @@
     <link rel="stylesheet" href="./styles/styles.css" />
     <title>Country Stat Viewer</title>
   </head>
+
   <body>
-    <main>
-      <h1>World Countries Data Viewer</h1>
-    </main>
+    <header>
+      <h1>World Countries Data</h1>
+      <p>Currently, we have ??? countries</p>
+      <p
+        id="search-message"
+        class="s-message"
+        style="display: none"
+      ></p>
+    </header>
+    <section class="input-section">
+      <input
+        type="text"
+        id="main-input"
+        class="input-main"
+      />
+      <div class="button-wrapper">
+        <button id="name-btn" class="sort-button">
+          NAME
+          <img
+            src="images/arrow-icon.svg"
+            class="arrow-icon"
+          />
+        </button>
+        <button id="capital-btn" class="sort-button">
+          CAPITAL
+          <img
+            src="images/arrow-icon.svg"
+            class="arrow-icon"
+          />
+        </button>
+        <button id="population-btn" class="sort-button">
+          POPULATION
+          <img
+            src="images/arrow-icon.svg"
+            class="arrow-icon"
+          />
+        </button>
+        <img
+          class="stats-icon"
+          src="images/stats-bars-icon.svg"
+        />
+      </div>
+    </section>
+    <main class="country-cards-grid" id="cards-grid"></main>
+    <section class="stats-section">
+      <p>World Population</p>
+      <div
+        class="population-stats-grid"
+        id="population-grid"
+      ></div>
+    </section>
   </body>
   <script src="./scripts/main.js"></script>
 </html>

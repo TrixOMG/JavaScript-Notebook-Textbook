@@ -1,5 +1,20 @@
 * {
   font-family: Montserrat;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --accent-color: #f2a93b;
+  --gray-color: #f1f0f0;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray-color);
+  padding-bottom: 1em;
 }
 
 main {
@@ -11,15 +26,73 @@ main {
 
 h1 {
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.8em;
+  padding: 0.5em;
+  padding-bottom: 0.3em;
+  color: var(--accent-color);
 }
 
-input {
-  margin-bottom: 0.3em;
-  font-size: 1.2em;
+.s-message {
+  color: var(--accent-color);
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.input-main {
+  border-radius: 2em;
+  padding: 0.5em;
+  padding-left: 1em;
+  width: 60%;
+  max-width: 60em;
+  color: var(--accent-color);
   outline: none;
-  border: 2px solid gray;
-  border-radius: 0.2em;
-  padding-inline: 0.5em;
-  padding-block: 0.2em;
+  border: 2px solid var(--gray-color);
+  margin: 1em;
+}
+
+.stats-icon {
+  width: 2em;
+  filter: invert(78%) sepia(75%) saturate(969%)
+    hue-rotate(327deg) brightness(96%) contrast(98%);
+  margin-left: -2em;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+}
+
+.sort-button {
+  background-color: var(--accent-color);
+  border-radius: 2em;
+  padding: 1em;
+  min-width: 13em;
+  font-size: 0.8em;
+  font-weight: bold;
+  border: 0;
+  position: relative;
+}
+
+.arrow-icon {
+  width: 1.3em;
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  display: none;
+}
+
+.country-cards-grid {
+  background-color: var(--gray-color);
+  margin-bottom: 1em;
+}
+
+.stats-section {
+  background-color: var(--gray-color);
 }
