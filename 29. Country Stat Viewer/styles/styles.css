@@ -91,6 +91,7 @@ h1 {
 .country-cards-grid {
   background-color: var(--gray-color);
   margin-bottom: 1em;
+  display: flex;
 }
 
 .stats-section {
