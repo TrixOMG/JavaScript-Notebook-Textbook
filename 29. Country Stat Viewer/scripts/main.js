@@ -5,8 +5,8 @@
 //cCard.appendChild(flag);
 
 //TODO
-//[ ] сверстать карточку страны
-//[ ] отобразить страны при помощи карточек
+//[X] сверстать карточку страны
+//[X] отобразить страны при помощи карточек
 //  [X] найти как отображать сфетченную картинку
 //    countries.forEach((c) => {
 //      const countryFlag = document.createElement("img");
@@ -16,6 +16,11 @@
 //
 //[X] настроить поиск по всем полям "стран" (18.02)
 //[X] проверить работу поиска (18.02)
+//19.02: 
+//[ ] filters for search
+//[ ] display stats
+//[ ] work of stats button
+//[ ] go back to top button
 //
 
 const countriesAPI = "https://restcountries.com/v2/all";
@@ -40,13 +45,46 @@ function showSearchMessage(text) {
   searchMessage.style.display = "block";
 }
 
-function drawCountriesCards(text) {
+function drawCountriesCards() {
   cardsContainer.innerHTML = "";
 
   copiedCountriesData.forEach((country) => {
     const countryCard = document.createElement("div");
     countryCard.classList.add("country-card");
-    countryCard.innerHTML = `<p>${country.name}</p>`;
+
+    const flag = document.createElement("img");
+    flag.classList.add("flag");
+    flag.src = `${country.flag}`;
+
+    const name = document.createElement("p");
+    name.classList.add("country-name");
+    name.innerText = country.name;
+
+    const infoBlock = document.createElement("section");
+    infoBlock.classList.add("info-block");
+
+    const capital = document.createElement("p");
+    capital.innerText = "Capital: " + country.capital;
+
+    const languages = document.createElement("p");
+    let languagesArray = [];
+    for (const lang of country.languages) {
+      languagesArray.push(lang.name);
+    }
+    languages.innerText =
+      "Languages: " + languagesArray.toString().replace(/,/g, ", ");
+
+    const population = document.createElement("p");
+    population.innerText = "Population: " + Intl.NumberFormat("en-US").format(country.population);
+
+    infoBlock.appendChild(capital);
+    infoBlock.appendChild(languages);
+    infoBlock.appendChild(population);
+
+    countryCard.appendChild(flag);
+    countryCard.appendChild(name);
+    countryCard.appendChild(infoBlock);
+
     cardsContainer.appendChild(countryCard);
   });
 }
@@ -105,7 +143,7 @@ const fetchCountriesData = async () => {
         languages: c.languages,
         capital: c.capital,
         name: c.name,
-        populaiton: c.population,
+        population: c.population,
       });
     });
 

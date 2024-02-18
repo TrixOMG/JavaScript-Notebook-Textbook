@@ -58,8 +58,7 @@ h1 {
 
 .stats-icon {
   width: 2em;
-  filter: invert(78%) sepia(75%) saturate(969%)
-    hue-rotate(327deg) brightness(96%) contrast(98%);
+  filter: invert(78%) sepia(75%) saturate(969%) hue-rotate(327deg) brightness(96%) contrast(98%);
   margin-left: -2em;
 }
 
@@ -92,6 +91,39 @@ h1 {
   background-color: var(--gray-color);
   margin-bottom: 1em;
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1em;
+  padding: 1em;
+}
+
+.country-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 11em;
+  background-color: white;
+  padding: 1em;
+  align-self: normal;
+}
+
+.flag {
+  width: 80%;
+  margin-bottom: 0.5em;
+}
+
+.country-name {
+  color: var(--accent-color);
+  font-size: 1.1em;
+  margin-block: 0.5em;
+  text-align: center;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
 }
 
 .stats-section {
