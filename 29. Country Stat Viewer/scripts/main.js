@@ -16,8 +16,8 @@
 //
 //[X] настроить поиск по всем полям "стран" (18.02)
 //[X] проверить работу поиска (18.02)
-//19.02: 
-//[ ] filters for search
+//19.02:
+//[X] filters for search
 //[ ] display stats
 //[ ] work of stats button
 //[ ] go back to top button
@@ -28,11 +28,161 @@ const countriesAPI = "https://restcountries.com/v2/all";
 const cardsContainer = document.getElementById("cards-grid");
 
 const input = document.getElementById("main-input");
-
 const searchMessage = document.getElementById("search-message");
+
+//button-filters for search (and their arrows)
+const nameBtn = document.getElementById("name-btn");
+const nameArrow = document.getElementById("name-arrow");
+
+const capitalBtn = document.getElementById("capital-btn");
+const capitalArrow = document.getElementById("capital-arrow");
+
+const populationBtn = document.getElementById("population-btn");
+const populationArrow = document.getElementById("population-arrow");
 
 const fetchedCountriesData = [];
 let copiedCountriesData = [];
+
+//sort status variable
+let sortedDirection = true; //true = "a-z", false = "z-a"
+let prevPushedButton = "";
+
+function changeButtonsAppearance(type) {
+  let rightIndex = null;
+
+  switch (type) {
+    case "name":
+      rightIndex = 0;
+      break;
+    case "capital":
+      rightIndex = 1;
+      break;
+    case "population":
+      rightIndex = 2;
+      break;
+    default:
+      console.error("Wrong type provided to changeButtonsAppearance");
+      return;
+  }
+
+  const arrowsArray = [nameArrow, capitalArrow, populationArrow];
+
+  //apply styles to pressed button
+  arrowsArray[rightIndex].style.display = "block";
+  if (sortedDirection)
+    arrowsArray[rightIndex].style.transform = "rotate(180deg)";
+  else arrowsArray[rightIndex].style.transform = "rotate(0deg)";
+
+  //clean styles of other buttons
+  for (let i = 0; i < arrowsArray.length; i++) {
+    if (i === rightIndex) continue;
+
+    arrowsArray[i].style.display = "none";
+  }
+}
+
+function toggleSort(type) {
+  if (prevPushedButton !== type) {
+    sortedDirection = true;
+    changeButtonsAppearance(type);
+  } else {
+    sortedDirection = !sortedDirection;
+    changeButtonsAppearance(type);
+  }
+
+  prevPushedButton = type;
+
+  //i know this is "spaghetti code" but it works and i'm too tired to write a better solution
+  //sort depending on type
+  if (sortedDirection) {
+    //a-z
+    switch (type) {
+      case "name":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          if (a.name > b.name) {
+            return 1;
+          } else if (a.name < b.name) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+
+      case "capital":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          if (a.capital > b.capital) {
+            return 1;
+          } else if (a.capital < b.capital) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+
+      case "population":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          return a.population - b.population;
+        });
+        break;
+
+      default:
+        console.error("Wrong type provided to toggleSort");
+        break;
+    }
+  } else {
+    //z-a
+    switch (type) {
+      case "name":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          if (a.name < b.name) {
+            return 1;
+          } else if (a.name > b.name) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+
+      case "capital":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          if (a.capital < b.capital) {
+            return 1;
+          } else if (a.capital > b.capital) {
+            return -1;
+          } else {
+            return 0;
+          }
+        });
+        break;
+
+      case "population":
+        copiedCountriesData = copiedCountriesData.sort((a, b) => {
+          return b.population - a.population;
+        });
+        break;
+
+      default:
+        console.error("Wrong type provided to toggleSort");
+        break;
+    }
+  }
+  renderAll(input.value.toLowerCase());
+}
+
+nameBtn.addEventListener("click", () => {
+  toggleSort("name");
+});
+
+capitalBtn.addEventListener("click", () => {
+  toggleSort("capital");
+});
+
+populationBtn.addEventListener("click", () => {
+  toggleSort("population");
+});
 
 function showSearchMessage(text) {
   if (text === "") {
@@ -75,7 +225,8 @@ function drawCountriesCards() {
       "Languages: " + languagesArray.toString().replace(/,/g, ", ");
 
     const population = document.createElement("p");
-    population.innerText = "Population: " + Intl.NumberFormat("en-US").format(country.population);
+    population.innerText =
+      "Population: " + Intl.NumberFormat("en-US").format(country.population);
 
     infoBlock.appendChild(capital);
     infoBlock.appendChild(languages);
@@ -165,4 +316,5 @@ const fetchCountriesData = async () => {
 };
 
 fetchCountriesData();
+toggleSort("name");
 //
