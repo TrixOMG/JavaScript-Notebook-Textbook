@@ -19,8 +19,8 @@
 //19.02:
 //[X] filters for search
 //[ ] display stats
-//[ ] work of stats button
-//[ ] go back to top button
+//[X] work of stats button
+//[X] go back to top button
 //
 
 const countriesAPI = "https://restcountries.com/v2/all";
@@ -40,12 +40,31 @@ const capitalArrow = document.getElementById("capital-arrow");
 const populationBtn = document.getElementById("population-btn");
 const populationArrow = document.getElementById("population-arrow");
 
+const goToStatsBtn = document.getElementById("go-to-stats-btn");
+const goToTopBtn = document.getElementById("go-to-top-btn");
+
+const header = document.getElementsByTagName("header")[0];
+
+const statisticsContainer = document.getElementById("population-grid");
+
+goToStatsBtn.addEventListener("click", () => {
+  goToTopBtn.style.display = "flex";
+  header.style.marginTop = "-4em";
+});
+
+goToTopBtn.addEventListener("click", () => {
+  header.style.marginTop = "0";
+  goToTopBtn.style.display = "none";
+});
+
 const fetchedCountriesData = [];
 let copiedCountriesData = [];
 
 //sort status variable
 let sortedDirection = true; //true = "a-z", false = "z-a"
 let prevPushedButton = "";
+
+let worldPopulation = [];
 
 function changeButtonsAppearance(type) {
   let rightIndex = null;
@@ -240,8 +259,74 @@ function drawCountriesCards() {
   });
 }
 
-function visualizeStats(text) {
-  //TODO
+function getMostPopulatedCountries() {
+  const resultData = [];
+  //resultData.push(worldPopulation);
+
+  copiedCountriesData.forEach((country) => {
+    resultData.push([country.name, country.population]);
+  });
+
+  resultData.sort((a, b) => {
+    return b[1] - a[1];
+  });
+
+  return resultData;
+}
+
+//function getWorldPopulation() {
+//  let totalPopulation = 0;
+//
+//  for (const country of fetchedCountriesData) {
+//    if (country.population) {
+//      totalPopulation += country.population;
+//    }
+//  }
+//
+//  return ["World", totalPopulation];
+//}
+
+function visualizeStats() {
+  const dataForViz = getMostPopulatedCountries();
+  console.log(dataForViz);
+  console.log(dataForViz[0][1]);
+
+  //Clean the container
+  statisticsContainer.innerHTML = "";
+
+  const maxValue = dataForViz[0][1];
+
+  for (member of dataForViz) {
+    //Container for all data
+    const fullStatsContainer = document.createElement("div");
+    fullStatsContainer.classList.add("full-stats-container");
+
+    const name = document.createElement("p");
+    name.innerText = member[0];
+    const count = document.createElement("p");
+    count.innerText = member[1];
+
+    // Container for "line"
+    const lineOfStatsContainer = document.createElement("div");
+    lineOfStatsContainer.classList.add("line-of-stats-container");
+    lineOfStatsContainer.style.width = "100%";
+    lineOfStatsContainer.style.height = "100%";
+
+    // "Line"
+    const lineOfStats = document.createElement("div");
+    lineOfStats.classList.add("line-of-stats");
+    lineOfStats.style.height = "100%";
+    lineOfStats.style.width =
+      Math.max((member[1] / maxValue) * 100, 0.01) + "%";
+
+    //Fitting "line" in container
+    lineOfStatsContainer.appendChild(lineOfStats);
+
+    fullStatsContainer.appendChild(name);
+    fullStatsContainer.appendChild(lineOfStatsContainer);
+    fullStatsContainer.appendChild(count);
+    statisticsContainer.appendChild(fullStatsContainer);
+  }
 }
 
 function renderAll(pText) {
@@ -302,7 +387,10 @@ const fetchCountriesData = async () => {
     const message = document.getElementById("number-of-countries-p");
     message.innerText = message.innerText.replace("???", countries.length);
 
+    //worldPopulation = getWorldPopulation();
+
     filterCountriesBySearch("");
+    toggleSort("name");
   } catch (err) {
     console.error(err);
     // In case service is unavailable
@@ -316,5 +404,7 @@ const fetchCountriesData = async () => {
 };
 
 fetchCountriesData();
-toggleSort("name");
-//
+goToTopBtn.style.display = "none";
+//header.style.marginTop = 0;
+//header.style.marginTop = "0";
+//goToTopBtn.style.display = "none";

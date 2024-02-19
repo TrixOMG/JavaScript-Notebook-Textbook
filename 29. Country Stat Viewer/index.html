@@ -1,75 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles/styles.css" />
-    <title>Country Stat Viewer</title>
-  </head>
 
-  <body>
-    <header>
-      <h1>World Countries Data</h1>
-      <p id="number-of-countries-p">Currently, we have ??? countries</p>
-      <p
-        id="search-message"
-        class="s-message"
-        style="display: none"
-      ></p>
-    </header>
-    <section class="input-section">
-      <input
-        type="text"
-        id="main-input"
-        class="input-main"
-        placeholder="Search Country by Name, Capital or Languages"
-      />
-      <div class="button-wrapper">
-        <button id="name-btn" class="sort-button">
-          NAME
-          <img
-            src="images/arrow-icon.svg"
-            class="arrow-icon"
-            id="name-arrow"
-          />
-        </button>
-        <button id="capital-btn" class="sort-button">
-          CAPITAL
-          <img
-            src="images/arrow-icon.svg"
-            class="arrow-icon"
-            id="capital-arrow"
-          />
-        </button>
-        <button id="population-btn" class="sort-button">
-          POPULATION
-          <img
-            src="images/arrow-icon.svg"
-            class="arrow-icon"
-            id="population-arrow"
-          />
-        </button>
-        <img
-          class="stats-icon"
-          src="images/stats-bars-icon.svg"
-        />
-      </div>
-    </section>
-    <main class="country-cards-grid" id="cards-grid"></main>
-    <section class="stats-section">
-      <p>World Population</p>
-      <div
-        class="population-stats-grid"
-        id="population-grid"
-      ></div>
-    </section>
-  </body>
-  <script src="./scripts/main.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <title>Country Stat Viewer</title>
+</head>
+
+<body>
+  <a name="top"></a>
+  <a href="#top" class="go-to-top-button" id="go-to-top-btn">
+    <img src="images/arrow-icon.svg" class="top-icon" />
+  </a>
+  <header>
+    <h1>World Countries Data</h1>
+    <p id="number-of-countries-p">Currently, we have ??? countries</p>
+    <p id="search-message" class="s-message" style="display: none"></p>
+  </header>
+  <section class="input-section">
+    <input type="text" id="main-input" class="input-main" placeholder="Search Country by Name, Capital or Languages" />
+    <div class="button-wrapper">
+      <button id="name-btn" class="sort-button">
+        NAME
+        <img src="images/arrow-icon.svg" class="arrow-icon" id="name-arrow" />
+      </button>
+      <button id="capital-btn" class="sort-button">
+        CAPITAL
+        <img src="images/arrow-icon.svg" class="arrow-icon" id="capital-arrow" />
+      </button>
+      <button id="population-btn" class="sort-button">
+        POPULATION
+        <img src="images/arrow-icon.svg" class="arrow-icon" id="population-arrow" />
+      </button>
+      <a href="#stats"><img class="stats-icon" src="images/stats-bars-icon.svg" id="go-to-stats-btn" /></a>
+    </div>
+  </section>
+  <main class="country-cards-grid" id="cards-grid"></main>
+  <section class="stats-section">
+  <a name="stats"></a>
+    <p>World Population</p>
+    <div class="population-stats-grid" id="population-grid"></div>
+  </section>
+</body>
+<script src="./scripts/main.js"></script>
+
 </html>
