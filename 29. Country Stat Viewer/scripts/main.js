@@ -1,28 +1,3 @@
-//const cCard = document.getElementById("c-card");
-//cCard.classList.add("country-card");
-//const flag = document.createElement("img");
-//flag.src = cCard.flag;
-//cCard.appendChild(flag);
-
-//TODO
-//[X] сверстать карточку страны
-//[X] отобразить страны при помощи карточек
-//  [X] найти как отображать сфетченную картинку
-//    countries.forEach((c) => {
-//      const countryFlag = document.createElement("img");
-//      countryFlag.src = c.flag;
-//      cardsContainer.appendChild(countryFlag);
-//    });
-//
-//[X] настроить поиск по всем полям "стран" (18.02)
-//[X] проверить работу поиска (18.02)
-//19.02:
-//[X] filters for search
-//[ ] display stats
-//[X] work of stats button
-//[X] go back to top button
-//
-
 const countriesAPI = "https://restcountries.com/v2/all";
 
 const cardsContainer = document.getElementById("cards-grid");

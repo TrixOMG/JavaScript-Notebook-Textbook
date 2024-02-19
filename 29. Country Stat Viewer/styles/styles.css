@@ -32,6 +32,14 @@ h1 {
   color: var(--accent-color);
 }
 
+h2 {
+  text-align: center;
+  font-size: 1.4em;
+  padding: 0.5em;
+  padding-bottom: 0.3em;
+  color: var(--accent-color);
+}
+
 .s-message {
   color: var(--accent-color);
 }
@@ -155,15 +163,16 @@ h1 {
   width: 3em;
 }
 
-/*added from prev project */
+.population-stats-grid {
+  font-size: 1.1em;
+  padding: 0.8em;
+}
 
+/*added from prev project */
 .full-stats-container {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-columns: 0.6fr 1fr 0.6fr;
   gap: 1em;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
   margin-block: 0.2em;
   width: 100%;
 }
